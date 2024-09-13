@@ -3,9 +3,20 @@ import java.io.IOException;
 public class ExceptionDemo {
 
     // Method that declares it may throw an IOException (checked exception)
-    public static void riskyFileOperation() throws IOException {
+    public static void riskyFileOperation() throws Exception {
         // Simulating a situation where a checked exception might occur
-        throw new IOException("File not found!");
+        try{
+            int b=0;
+            int c=5/b;
+        } catch (Exception e) {
+            System.out.println("Caught a checked exception: 0" + e.getMessage());
+            throw new Exception(e);
+
+        }
+        finally{
+            System.out.println("hello from risky operation0");
+        }
+
     }
 
     // Method to demonstrate an unchecked exception (ArrayIndexOutOfBoundsException)
@@ -19,8 +30,11 @@ public class ExceptionDemo {
         // Handling the checked exception using try-catch
         try {
             riskyFileOperation();
-        } catch (IOException e) {
-            System.out.println("Caught a checked exception: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Caught a checked exception: 1" + e.getMessage());
+        }
+        finally {
+            System.out.println("hello from risky operation parent");
         }
 
         // Handling the unchecked exception using try-catch (not mandatory)
